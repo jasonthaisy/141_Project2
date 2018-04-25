@@ -3,17 +3,21 @@ package com.garbagecollector;
 public class Main {
 
     public static void main(String[] args) {
-	    GCSimulator simulator = new GCSimulator();
+        GCSimulator simulator = new GCSimulator();
 
-	    Object a = new Object();
-	    Object b = new Object();
-	    Object c = b;
+        Test A = new Test("A");
+        Test B = new Test("B");
+        Test C = A;
+        Test D = C;
+        Test E = B;
 
-	    simulator.createObject("a", a);
-	    simulator.createObject("b", b);
-	    simulator.assign("c", "b", b);
-	    //simulator.writeObject("c", "a", "f", c, a);
-        //simulator.assign("a", "b", b);
+        simulator.createObject("a", A);
+        simulator.createObject("b", B);
+        simulator.assign("c", "a", A);
+        simulator.assign("d", "c", C);
+        simulator.assign("e", "b", B);
+        simulator.assign("a", "b", B);
+
         simulator.gc();
     }
 }
